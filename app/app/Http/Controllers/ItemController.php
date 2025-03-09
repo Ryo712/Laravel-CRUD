@@ -11,10 +11,11 @@ class ItemController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $items = Item::latest()->get();
-        return view('items.index', compact('items'));
-    }
+{
+    // 古いものが先に表示されるように並べ替え
+    $items = Item::orderBy('id', 'asc')->get();
+    return view('items.index', compact('items'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -62,22 +63,21 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-public function update(Request $request, Item $item)
-{
-    $request->validate([
-        'name' => 'required',
-        'description' => 'required',
-    ]);
-    
-    // $request->all() の代わりに必要なフィールドだけを指定
-    $item->update([
-        'name' => $request->name,
-        'description' => $request->description,
-    ]);
-    
-    return redirect()->route('items.index')
-                    ->with('success', 'Item updated successfully.');
-}
+    public function update(Request $request, Item $item)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        
+        // store メソッドと同じアプローチで直接プロパティを設定
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->save();
+        
+        return redirect()->route('items.index')
+                        ->with('success', 'Item updated successfully.');
+    }
 
     /**
      * Remove the specified resource from storage.
