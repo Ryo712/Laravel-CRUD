@@ -21,52 +21,48 @@
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <div class="form-group">
-                                        <strong>name:</strong>
+                                        <strong>Name:</strong>
                                         <input type="text" name="name" class="form-control" placeholder="名前を入力" required>
                                     </div>
                                 </div>
                                 <div class="col-md-5 mb-3">
                                     <div class="form-group">
-                                        <strong>description:</strong>
+                                        <strong>Description:</strong>
                                         <input type="text" name="description" class="form-control" placeholder="説明を入力" required>
                                     </div>
                                 </div>
                                 <div class="col-md-2 mb-3 d-flex align-items-end">
-                                    <button type="submit" class="btn btn-success w-100">作成</button>
+                                    <button type="submit" class="btn btn-success w-100">Create</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     
-                    <h3>アイテム一覧</h3>
+                    <h3>Items</h3>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>名前</th>
-                                <th>説明</th>
+                                <th>Name</th>
+                                <th>Description</th>
                                 <th width="280px">アクション</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
-                                </td>
-                                <td>{{ $item->description }}</td>
-                                <td>
-                                    <form action="{{ route('items.destroy', $item->id) }}" method="POST">
-                                        <a class="btn btn-info btn-sm" href="{{ route('items.show', $item->id) }}">詳細</a>
-                                        <a class="btn btn-primary btn-sm" href="{{ route('items.edit', $item->id) }}">編集</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">削除</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
+                        @foreach ($items as $item)
+                        <tr>
+                            <td>
+                                <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
+                            </td>
+                            <td>{{ $item->description }}</td>
+                            <td>
+                                <form action="{{ route('items.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
