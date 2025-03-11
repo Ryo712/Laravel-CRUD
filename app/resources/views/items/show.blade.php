@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>Item details</h2>
-                    <a class="btn btn-primary" href="{{ route('items.index') }}">戻る</a>
+                    <a class="btn btn-primary" href="{{ route('items.index') }}">Back</a>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -39,7 +39,7 @@
                     <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="mt-3">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </div>
             </div>
