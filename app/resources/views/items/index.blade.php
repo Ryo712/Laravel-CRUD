@@ -44,7 +44,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th width="280px">アクション</th>
+                                <th width="280px">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,7 @@
                                 <form action="{{ route('items.destroy', $item->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
                         </tr>
