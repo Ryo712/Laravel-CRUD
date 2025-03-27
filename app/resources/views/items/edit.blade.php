@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>アイテム編集</h2>
-                    <a class="btn btn-primary" href="{{ route('items.index') }}">Back</a>
+                    <a class="btn btn-primary" href="{{ route('items.index') }}">戻る</a>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
